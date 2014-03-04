@@ -1,0 +1,36 @@
+<template name="page">
+
+{{#if showCreateDialog}}
+{{> createDialog}}
+{{/if}}
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="header row">
+                <div class="span6"> 
+                    <p class="add">Add</p>         
+                </div>
+                <div class="span6">
+                    <div style="float: right">
+                        {{loginButtons align="right"}}
+                    </div>
+                </div>
+            </div>
+            <div class="years row"> 
+                {{#each visible_years}}
+                <h3 class="span1">{{this}}</h3>
+                {{/each}} 
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    {{> details}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+

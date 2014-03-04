@@ -1,0 +1,38 @@
+<template name="details">
+<div class="details row">
+
+    {{#if loggedIn}}
+    {{#each all_parties}}
+ <div class="event span2">
+        <h1>{{title}}</h1>
+
+        <h2>{{public}}</h2>
+        <p>{{date}}</p>
+        <div class="description">{{description}}</div>
+
+        <div class="alert alert-info"><small>
+                <b><a href="#" class="remove">delete this listing</a></b>.
+        </small>
+        </div>
+    </div><!-- end .event -->
+    {{/each}}
+
+    {{else}}
+    {{#each public_parties}}
+ <div class="event span2">
+    <h1>{{title}}</h1>
+
+    <h2>{{public}}</h2>
+    <div class="description">{{description}}</div>
+
+
+    <div class="alert alert-info"><small>
+            <b><a href="#" class="remove">delete this listing</a></b>.
+    </small></div>
+    {{/each}}
+
+    {{/if}}
+    </div><!-- end .event -->
+</div>
+</template>
+
