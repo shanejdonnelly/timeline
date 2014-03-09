@@ -1,12 +1,11 @@
-// All Tomorrow's Parties -- data model
-// hi
+//  Timeline entries -- data model
 // Loaded on both the client and the server
 
 ///////////////////////////////////////////////////////////////////////////////
-// Parties
+// Timeline
 
 /*
-  Each party is represented by a document in the Parties collection:
+  Each entry is represented by a document in the entries collection:
     owner: user id 
     date: Date
     title, description: String
@@ -14,14 +13,14 @@
 
 
 */
-Parties = new Meteor.Collection("parties");
+Entries = new Meteor.Collection("entries");
 
-Parties.allow({
-  insert: function (userId, party) {
-    return false; // no cowboy inserts -- use createParty method
+Entries.allow({
+  insert: function (userId, entry) {
+    return false; // no cowboy inserts -- use createentry method
   },
-  update: function (userId, party, fields, modifier) {
-    if (userId !== party.owner)
+  update: function (userId, entry, fields, modifier) {
+    if (userId !== entry.owner)
       return false; // not the owner
 
     var allowed = ["title", "description"];
@@ -33,9 +32,9 @@ Parties.allow({
     // future Meteor will have a schema system to makes that easier.
     return true;
   },
-  remove: function (userId, party) {
+  remove: function (userId, entry) {
     // You can only remove parties that you created and nobody is going to.
-    return party.owner === userId;
+    return entry.owner === userId;
   }
 });
 
@@ -44,15 +43,15 @@ var NonEmptyString = Match.Where(function (x) {
   return x.length !== 0;
 });
 
-createParty = function (options) {
+createEntry = function (options) {
   var id = Random.id();
-  Meteor.call('createParty', _.extend({ _id: id }, options));
+  Meteor.call('createEntry', _.extend({ _id: id }, options));
   return id;
 };
 
 Meteor.methods({
   // options should include: title, description, public
-  createParty: function (options) {
+  createEntry: function (options) {
     check(options, {
       title: NonEmptyString,
       description: NonEmptyString, 
@@ -69,7 +68,7 @@ Meteor.methods({
       throw new Meteor.Error(403, "You must be logged in");
 
     var id = options._id || Random.id();
-    Parties.insert({
+    Entries.insert({
       _id: id,
       owner: this.userId, 
       title: options.title,

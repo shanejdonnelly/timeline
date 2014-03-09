@@ -5,16 +5,16 @@ Template.details.loggedIn = function(){
   return Meteor.userId();
 }
 
-Template.details.all_parties = function () {
-  return Parties.find({owner:Meteor.userId()});
+Template.details.all_entries = function () {
+  return Entries.find({owner:Meteor.userId()});
 };
 
-Template.details.public_parties = function () {
-  return Parties.find({public:true});
+Template.details.public_entries = function () {
+  return Entries.find({public:true});
 };
 
-Template.details.anyParties = function () {
-  return Parties.find().count() > 0;
+Template.details.anyEntries = function () {
+  return Entries.find().count() > 0;
 };
 
 Template.details.creatorName = function () {
@@ -30,7 +30,7 @@ Template.details.canRemove = function () {
 
 Template.details.events({
   'click .remove': function () {
-    Parties.remove(this._id);
+    Entries.remove(this._id);
     return false;
   }
 });

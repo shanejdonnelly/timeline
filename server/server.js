@@ -1,6 +1,6 @@
-// All Tomorrow's Parties -- server
+// Entries -- server
 
-Meteor.publish("parties", function () {
-  return Parties.find(
+Meteor.publish("entries", function () {
+  return Entries.find(
     {$or: [{"public": true}, {invited: this.userId}, {owner: this.userId}]});
 });

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Create Party dialog
+// Create entry dialog
 
 var openCreateDialog = function () {
   Session.set("createError", null);
@@ -23,7 +23,7 @@ Template.createDialog.events({
 
 
     if (title.length && description.length) {
-      var id = createParty({
+      var id = createEntry({
         title: title,
         date: date,
         description: description, 

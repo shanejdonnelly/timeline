@@ -2,7 +2,7 @@
 <div class="details row">
 
     {{#if loggedIn}}
-    {{#each all_parties}}
+    {{#each all_entries}}
  <div class="event span2">
         <h1>{{title}}</h1>
 
@@ -18,7 +18,7 @@
     {{/each}}
 
     {{else}}
-    {{#each public_parties}}
+    {{#each public_entries}}
  <div class="event span2">
     <h1>{{title}}</h1>
 

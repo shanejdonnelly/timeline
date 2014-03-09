@@ -1,1 +1,1 @@
-Meteor.subscribe("parties");
+Meteor.subscribe("entries");
